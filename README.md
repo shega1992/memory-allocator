@@ -15,3 +15,6 @@ void *malloc(size_t size) {
 **size** parameter has **size_t** type. **size_t** is unsigned integer type. Therefore **size** cannot take values less than 0, which results incorrect condition **size <= 0**. 
 
 2) https://wiki-prog.infoprepa.epita.fr/images/0/04/Malloc_tutorial.pdf . This is a good tutorial, although the presentation of individual ideas seemed a bit abstruse to me.
+## What is in this allocator?
+Conceptually, my memory allocator is similar to the two presented above, but there are differences:
+1) I forcibly align headers( where the information about the allocated block is stored) and memory blocks along an 8-byte boundary. Thus, if the user requests for example 3 bytes, the allocator will return 8 (although the user will not know about it). In my system, header alignment is optional, the **gcc** aligns the header to an 8-byte alignment by default. Alignment is mainly intended for compatibility with 32-bit systems, where the **size_t** type and pointer are taken 4 bytes.
