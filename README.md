@@ -80,3 +80,4 @@ Enter the initialization value: 3
 Enter the number of elements (<1 to quit): 0
 Done.
 ```
+## Why am I not using LD_PRELOAD?
