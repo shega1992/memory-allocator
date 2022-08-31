@@ -22,7 +22,9 @@ Conceptually, my memory allocator is similar to the two presented above, but the
 3) Allocator is presumably thread-safe (some additional checks may be required).
 ## How to use this allocator?
 I suggest the following procedure:
+
 **cpp -v /dev/null -o /dev/null** (this trick is taken from https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html#Search-Path) to know search path in your system.
+
 We are interested in the following lines(the output may differ in your system):
 ```
 #include <...> search starts here:
@@ -36,6 +38,7 @@ I suggest using **/usr/local/include** to keep header file(**wallocator.h**). Yo
 #include <wallocator.h>
 ```
 in your programs.
+
 But the work is not finished yet. The next step is to move liballoc.so. Similar to the previous step I suggest using /usr/local/lib to keep the library.
 The following actions are necessary( I do not know the exact details of each linux distribution, so I am only giving an assumed set of actions ):
 1) Check /etc/ld.so.conf for include /etc/ld.so.conf.d/*.conf line. If line exist then go to the next step. If no then put one line in it: /usr/local/lib and skip steps 2-4.
