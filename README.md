@@ -22,3 +22,41 @@ Conceptually, my memory allocator is similar to the two presented above, but the
 3) Allocator is presumably thread-safe (some additional checks may be required).
 ## How to use this allocator?
 I suggest the following procedure:
+**cpp -v /dev/null -o /dev/null** (this trick is taken from https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html#Search-Path) to know search path in your system.
+We are interested in the following lines(the output may differ in your system):
+```
+#include <...> search starts here:
+ /usr/lib/gcc/x86_64-linux-gnu/9/include
+ /usr/local/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+ ```
+I suggest using **/usr/local/include** to keep header file(**wallocator.h**). You will need to be a superuser to move the file to this directory. After that, you can
+```
+#include <wallocator.h>
+```
+in your programs.
+But the work is not finished yet. The next step is to move liballoc.so. Similar to the previous step I suggest using /usr/local/lib to keep the library.
+The following actions are necessary( I do not know the exact details of each linux distribution, so I am only giving an assumed set of actions ):
+1) Check /etc/ld.so.conf for include /etc/ld.so.conf.d/*.conf line. If line exist then go to the next step. If no then put one line in it: /usr/local/lib and skip steps 2-4.
+2) Check /etc/ld.so.conf.d/libc.conf. If file contains /usr/local/lib line then no additional work is required. Skip steps 3-4.
+3) If libc.conf file is not exist or not contain /usr/local/lib line then check other files in this directory for /usr/local/lib. if successful, skip next step.
+4) If no file in the directory contains the searched line, then create a file with the .conf extension and put one line in it: /usr/local/lib.
+5) Type sudo ldconfig command.
+Now we are ready to use the library in our programs. For example, let's take the Ex1.c program from the Tests directory. To compile: gcc -o Ex1 Ex1.c -lalloc.
+What is -lalloc? Basically it's -llibrary linker option. -l is an option followed by the name of our library without a lib prefix and .so extension. 
+For more details type man gcc then /-llibrary.
+Let's make sure we are using liballoc.so in our program. Type ldd ./Ex1.( ldd prints the shared objects (shared libraries) required by each program or shared object specified on the command line).
+The output will be something like this:
+    linux-vdso.so.1 (0x00007ffd615d3000)
+	liballoc.so => /usr/local/lib/liballoc.so (0x00007f0f131a2000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0f12fb0000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f0f131c3000)
+Good, now let's run the program. Type ./Ex1
+Here's how the program works on my system:
+Enter the number of elements: 5
+Enter the initialization value: 3
+
+3 3 3 3 3
+Enter the number of elements (<1 to quit): 0
+Done.
