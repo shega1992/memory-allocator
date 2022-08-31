@@ -40,10 +40,23 @@ I suggest using **/usr/local/include** to keep header file(**wallocator.h**). Yo
 in your programs.
 
 But the work is not finished yet. The next step is to move **liballoc.so**. Similar to the previous step I suggest using **/usr/local/lib** to keep the library.
+
 The following actions are necessary( I do not know the exact details of each linux distribution, so I am only giving an assumed set of actions ):
 
-1) Check /etc/ld.so.conf for include /etc/ld.so.conf.d/*.conf line. If line exist then go to the next step. If no then put one line in it: /usr/local/lib and skip steps 2-4.
-2) Check /etc/ld.so.conf.d/libc.conf. If file contains /usr/local/lib line then no additional work is required. Skip steps 3-4.
+1) Check **/etc/ld.so.conf** for
+```  
+ include /etc/ld.so.conf.d/*.conf 
+ ```
+ line. If line exist then go to the next step. If no then put one line in it: 
+ ```
+ /usr/local/lib
+ ```
+ and skip steps 2-4.
+2) Check **/etc/ld.so.conf.d/libc.conf**. If file contains 
+```
+/usr/local/lib 
+```
+line then no additional work is required. Skip steps 3-4.
 3) If libc.conf file is not exist or not contain /usr/local/lib line then check other files in this directory for /usr/local/lib. if successful, skip next step.
 4) If no file in the directory contains the searched line, then create a file with the .conf extension and put one line in it: /usr/local/lib.
 5) Type sudo ldconfig command.
