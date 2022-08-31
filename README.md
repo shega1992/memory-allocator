@@ -51,20 +51,30 @@ The following actions are necessary( I do not know the exact details of each lin
 3) If **libc.conf** file is not exist or not contain  ``` /usr/local/lib ```  line then check other files in this directory for ``` /usr/local/lib ```. if successful, skip next step.
 4) If no file in the directory contains the searched line, then create a file with the **.conf** extension and put one line in it: ``` /usr/local/lib ```.
 5) Type **sudo ldconfig** command.
-Now we are ready to use the library in our programs. For example, let's take the Ex1.c program from the Tests directory. To compile: gcc -o Ex1 Ex1.c -lalloc.
-What is -lalloc? Basically it's -llibrary linker option. -l is an option followed by the name of our library without a lib prefix and .so extension. 
-For more details type man gcc then /-llibrary.
-Let's make sure we are using liballoc.so in our program. Type ldd ./Ex1.( ldd prints the shared objects (shared libraries) required by each program or shared object specified on the command line).
+
+Now we are ready to use the library in our programs. For example, let's take the **Ex1.c** program from the **Tests** directory. 
+
+To compile: **gcc -o Ex1 Ex1.c -lalloc**.
+
+What is **-lalloc**? Basically it's **-llibrary** linker option. **-l** is an option followed by the name of our library without a **lib** prefix and **.so** extension. For more details type **man gcc** then **/-llibrary**.
+
+Let's make sure we are using **liballoc.so** in our program. Type **ldd ./Ex1**.( **ldd** prints the shared objects (shared libraries) required by each program or shared object specified on the command line).
+
 The output will be something like this:
+```
     linux-vdso.so.1 (0x00007ffd615d3000)
-	liballoc.so => /usr/local/lib/liballoc.so (0x00007f0f131a2000)
-	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0f12fb0000)
-	/lib64/ld-linux-x86-64.so.2 (0x00007f0f131c3000)
-Good, now let's run the program. Type ./Ex1
+    liballoc.so => /usr/local/lib/liballoc.so (0x00007f0f131a2000)
+    libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0f12fb0000)
+    /lib64/ld-linux-x86-64.so.2 (0x00007f0f131c3000)
+```
+Good, now let's run the program. Type **./Ex1**.
+
 Here's how the program works on my system:
+```
 Enter the number of elements: 5
 Enter the initialization value: 3
 
 3 3 3 3 3
 Enter the number of elements (<1 to quit): 0
 Done.
+```
