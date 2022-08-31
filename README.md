@@ -82,4 +82,4 @@ Done.
 ```
 ## Why am I not using LD_PRELOAD?
 If you have already looked at the source code, you probably noticed that there are no **malloc** , **calloc** , **realloc** and **free** functions. 
-Instead, there are **wmalloc** , **wcalloc** , **wrealloc** and **wfree** functions.
+Instead, there are similar functions prefixed **w**. To be honest, I tried to use **malloc** , **calloc** , **realloc** and **free**, but ran into problems.
