@@ -43,23 +43,14 @@ But the work is not finished yet. The next step is to move **liballoc.so**. Simi
 
 The following actions are necessary( I do not know the exact details of each linux distribution, so I am only giving an assumed set of actions ):
 
-1) Check **/etc/ld.so.conf** for
-```  
- include /etc/ld.so.conf.d/*.conf 
- ```
- line. If line exist then go to the next step. If no then put one line in it: 
- ```
- /usr/local/lib
- ```
- and skip steps 2-4.
-2) Check **/etc/ld.so.conf.d/libc.conf**. If file contains 
-```
-/usr/local/lib 
-```
-line then no additional work is required. Skip steps 3-4.
-3) If libc.conf file is not exist or not contain /usr/local/lib line then check other files in this directory for /usr/local/lib. if successful, skip next step.
-4) If no file in the directory contains the searched line, then create a file with the .conf extension and put one line in it: /usr/local/lib.
-5) Type sudo ldconfig command.
+1) Check **/etc/ld.so.conf** for ```  include /etc/ld.so.conf.d/*.conf  ```  line. If line exist then go to the next step. If no then put one line in it: 
+ ``` /usr/local/lib ``` and skip steps 2-4.
+
+2) Check **/etc/ld.so.conf.d/libc.conf**. If file contains  ``` /usr/local/lib  ``` line then no additional work is required. Skip steps 3-4.
+
+3) If **libc.conf** file is not exist or not contain  ``` /usr/local/lib ```  line then check other files in this directory for ``` /usr/local/lib ```. if successful, skip next step.
+4) If no file in the directory contains the searched line, then create a file with the **.conf** extension and put one line in it: ``` /usr/local/lib ```.
+5) Type **sudo ldconfig** command.
 Now we are ready to use the library in our programs. For example, let's take the Ex1.c program from the Tests directory. To compile: gcc -o Ex1 Ex1.c -lalloc.
 What is -lalloc? Basically it's -llibrary linker option. -l is an option followed by the name of our library without a lib prefix and .so extension. 
 For more details type man gcc then /-llibrary.
