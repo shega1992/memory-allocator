@@ -81,3 +81,5 @@ Enter the number of elements (<1 to quit): 0
 Done.
 ```
 ## Why am I not using LD_PRELOAD?
+If you have already looked at the source code, you probably noticed that there are no **malloc** , **calloc** , **realloc** and **free** functions. 
+Instead, there are **wmalloc** , **wcalloc** , **wrealloc** and **wfree** functions.
