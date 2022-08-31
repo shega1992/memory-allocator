@@ -21,6 +21,8 @@ Conceptually, my memory allocator is similar to the two presented above, but the
 2) I used **best fit** strategy instead of **first fit** when searching for a free block, but I added one feature: if we find a block exactly the right size, we immediately return it.  Thus, with a certain probability, we will not have to go through the entire list. The splitting and merging of blocks are available in this allocator.
 3) Allocator is presumably thread-safe (some additional checks may be required).
 ## How to use this allocator?
+To compile: **gcc -shared -fPIC wallocator.c -o liballoc.so** 
+
 I suggest the following procedure:
 
 **cpp -v /dev/null -o /dev/null** (this trick is taken from https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html#Search-Path) to know search path in your system.
