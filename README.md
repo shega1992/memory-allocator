@@ -12,6 +12,6 @@ void *malloc(size_t size) {
   }
   ...
 ```
-**size** parameter has size_t type. size_t is unsigned integer type. Therefore **size** cannot take values less than 0, which results incorrect condition **size <= 0**. 
+**size** parameter has **size_t** type. **size_t** is unsigned integer type. Therefore **size** cannot take values less than 0, which results incorrect condition **size <= 0**. 
 
-2) 
+2) https://wiki-prog.infoprepa.epita.fr/images/0/04/Malloc_tutorial.pdf . This is a good tutorial, although the presentation of individual ideas seemed a bit abstruse to me.
