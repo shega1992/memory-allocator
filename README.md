@@ -82,4 +82,27 @@ Done.
 ```
 ## Why am I not using LD_PRELOAD?
 If you have already looked at the source code, you probably noticed that there are no **malloc** , **calloc** , **realloc** and **free** functions. 
-Instead, there are similar functions prefixed **w**. To be honest, I tried to use **malloc** , **calloc** , **realloc** and **free**, but ran into problems.
+Instead, there are similar functions prefixed **w**. To be honest, I tried to use **malloc** , **calloc** , **realloc** and **free**, but ran into problems:
+
+1) **ldd** prints the shared objects (shared libraries) required by each program and then issues segmentation fault. I do not know why this error occurs. An attempt to find a solution in Google was unsuccessful. By the way, the allocator from http://danluu.com/malloc-tutorial / also has similar problems on my system (even worse, **ldd** prints only a segmentation fault, no shared libraries are printed).
+2) Many programs written by me really worked, but trying to run linux executable programs often led to failure. For example, here is the output for **ls -l**:
+```
+Inconsistency detected by ld.so: dl-open.c: 560: dl_open_worker: Assertion `_dl_debug_initialize (0, args->nsid)->r_state == RT_CONSISTENT' failed!
+```
+output for **man ls**:
+```
+man: can't add seccomp rule: Invalid argument
+```
+although **head wallocator.c** works correctly:
+```
+#include <assert.h>
+#include <string.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <pthread.h>
+#include "wallocator.h"
+
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+
+void * wmalloc(size_t size)
+```
