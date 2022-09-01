@@ -114,6 +114,6 @@ If you are interested in **LD_PRELOAD** approach, please check:
 1) https://jvns.ca/blog/2014/11/27/ld-preload-is-super-fun-and-easy/
 2) https://stackoverflow.com/questions/426230/what-is-the-ld-preload-trick
 ## Tests directory
-I provide some test examples in **Tests** directory. **Ex1.c** , **Ex2.c** , **Ex3.c** are modified source code for exercises **12-8**, **12-9** , **17-1** from *C Primer Plus* by *Stephen Prata*. **wzip.c** and **pzip.c** are modified source code for my projects from https://github.com/shega1992/Unix-Utilities. 
+I provide some test examples in **Tests** directory. **Ex1.c** , **Ex2.c** , **Ex3.c** are modified source code for exercises **12-8**, **12-9**, **17-1** from *C Primer Plus* by *Stephen Prata*. **wzip.c** and **pzip.c** are modified source code for my projects from https://github.com/shega1992/Unix-Utilities. 
 
-How to use **Ex1.c** , **Ex2.c** , **Ex3.c** was previously explained in  ***'How to use this allocator?'*** section.
+How to use **Ex1.c** , **Ex2.c** , **Ex3.c** was previously explained in  ***'How to use this allocator?'*** section. For **wzip.c** and **pzip.c** please read the instruction https://github.com/remzi-arpacidusseau/ostep-projects#projects-for-an-operating-systems-class and https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-utilities/wzip. 
