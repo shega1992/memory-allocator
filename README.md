@@ -109,3 +109,11 @@ void * wmalloc(size_t size)
 For the sake of interest, I tried to run **danluu's** allocator on my system. The result is absolutely the opposite: none of my programs work (a segmentation fault appears when starting the program), although linux executable programs work correctly.
 
 So I decided not to use the standard library functions replacement approach and instead just offer alternative functions to work with a heap that you can use in your programs.
+
+If you are interested in **LD_PRELOAD** approach, please check:
+1) https://jvns.ca/blog/2014/11/27/ld-preload-is-super-fun-and-easy/
+2) https://stackoverflow.com/questions/426230/what-is-the-ld-preload-trick
+## Tests directory
+I provide some test examples in **Tests** directory. **Ex1.c** , **Ex2.c** , **Ex3.c** are modified source code for exercises **12-8**, **12-9** , **17-1** from *C Primer Plus* by *Stephen Prata*. **wzip.c** and **pzip.c** are modified source code for my projects from https://github.com/shega1992/Unix-Utilities. 
+
+How to use **Ex1.c** , **Ex2.c** , **Ex3.c** was previously explained in  ***'How to use this allocator?'*** section.
