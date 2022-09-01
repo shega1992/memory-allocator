@@ -106,3 +106,6 @@ pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 void * wmalloc(size_t size)
 ```
+For the sake of interest, I tried to run **danluu's** allocator on my system. The result is absolutely the opposite: none of my programs work (a segmentation fault appears when starting the program), although linux executable programs work correctly.
+
+So I decided not to use the standard library functions replacement approach and instead just offer alternative functions to work with a heap that you can use in your programs.
